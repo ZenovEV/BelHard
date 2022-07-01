@@ -5,12 +5,12 @@
 и сколько отрицательных
 
 '''
-a = int(input("Введите первое число:"))
-b = int(input("Введите второе число:"))
-c = int(input("Введите третье число:"))
+number_1 = int(input("Введите первое число:"))
+number_2 = int(input("Введите второе число:"))
+number_3 = int(input("Введите третье число:"))
 
 print("Положительных чисел", end=":")
-print((a > 0) + (b > 0) + (c > 0))
+print((number_1 > 0) + (number_2 > 0) + (number_3 > 0))
 print("Отрицательных чисел", end=":")
-print((a < 0) + (b < 0) + (c < 0))
+print((number_1 < 0) + (number_2 < 0) + (number_3 < 0))
 
