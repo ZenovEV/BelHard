@@ -13,6 +13,7 @@ class User(Base):
     username = Column(VARCHAR(24), unique=True, nullable=False)
     hashed_password = Column(Text, nullable=False)
     is_blocked = Column(Boolean, default=False)
+    email = Column(Text, unique=True)
 
 
 class Category(Base):
@@ -30,10 +31,11 @@ class Article(Base):
     date_created = Column(TIMESTAMP, default=datetime.utcnow())
     category_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
 
-
+"""
 class UserArticle(Base):
     __tablename__: str = "user_articles"
 
-    id = Column(Integer, prymary_key=True)
-    user_id = Column(Integer, ForeignKey("user.id", ondelete="NO ACTION"), nullable=False)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="NO ACTION"), nullable=False)
     article_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
+"""

@@ -3,7 +3,7 @@ import psycopg2
 
 def create_session(func):
     def wrapper(**kwargs):
-        conn = psycopg2.connect("postgresql://zwenv3:postgres@localhost:5432/bh57")
+        conn = psycopg2.connect()
         cour = conn.cursor()
         return func(**kwargs, cour=cour, conn=conn)
     return wrapper
