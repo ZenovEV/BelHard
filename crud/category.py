@@ -10,19 +10,6 @@ class CRUDCategory:
 
     @staticmethod
     @create_session
-    def add(category: CategorySchema, session: Session = None) -> CategoryInDBSema | None:
-        category = Category(**category.dict())
-        session.add(category)
-        try:
-            session.commit()
-        except IntegrityError:
-            pass
-        else:
-            session.refresh(category)
-            return CategoryInDBSema(**category.__dict__)
-
-    @staticmethod
-    @create_session
     def get(category_id: int, session: Session = None) -> CategoryInDBSema | None:
         category = session.execute(
             select(Category).where(Category.id == category_id)
@@ -47,6 +34,19 @@ class CRUDCategory:
                 .order_by(Category.id)
             )
         return [CategoryInDBSema(**category[0].__dict__) for category in categories]
+
+    @staticmethod
+    @create_session
+    def add(category: CategorySchema, session: Session = None) -> CategoryInDBSema | None:
+        category = Category(**category.dict())
+        session.add(category)
+        try:
+            session.commit()
+        except IntegrityError:
+            pass
+        else:
+            session.refresh(category)
+            return CategoryInDBSema(**category.__dict__)
 
     @staticmethod
     @create_session
