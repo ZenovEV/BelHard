@@ -2,9 +2,8 @@ from sqlalchemy import select, update, delete
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
-from models import create_session, Category, Article
+from models import create_session, Category
 from schemas import CategoryInDBSema, CategorySchema
-
 
 
 class CRUDCategory:
@@ -33,16 +32,14 @@ class CRUDCategory:
         if category:
             return CategoryInDBSema(**category[0].__dict__)
 
-
-
     @staticmethod
     @create_session
     def get_all(parent_id: int = None, session: Session = None) -> CategoryInDBSema | list:
         if parent_id:
             categories = session.execute(
-            select(Category)
-            .where(Category.parent_id == parent_id)
-            .order_by(Category.id)
+                select(Category)
+                .where(Category.parent_id == parent_id)
+                .order_by(Category.id)
             )
         else:
             categories = session.execute(
@@ -79,6 +76,7 @@ class CRUDCategory:
             return False
         else:
             return True
+
 
 '''
     @staticmethod

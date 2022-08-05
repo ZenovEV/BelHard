@@ -1,18 +1,31 @@
 from crud import CRUDCategory
 
 
-#print(CRUDCategory.get_articles(category_id=1))
+#print(CRUDCategory.get(category_id=1))
+
+#CRUDCategory.add(name="Mila", parent_id=1)
+
+#CRUDCategory.update(category=category)
+
 """
 for category in CRUDCategory.get_all():
-    print(category.name)
     print(category.__dict__)
+
+    print(category.name)
+"""
 
 
 
 category = CRUDCategory.get(category_id=1)
 print(category)
-#category.parent_id = None
-category.name = 'Food'
+category.name = 'MyFood'
 CRUDCategory.update(category=category)
 print(CRUDCategory.get(category_id=1))
-"""
+#category.name = None
+#category.parent_id = None
+#category = CRUDCategory.get(category_id=1)
+
+
+
+
+
