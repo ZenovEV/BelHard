@@ -23,8 +23,6 @@ class Category(Base):
     parent_id = Column(SmallInteger, ForeignKey("categories.id", ondelete="CASCADE"))
 
 
-
-
 class Article(Base):
     __tablename__: str = "articles"
     id = Column(Integer, primary_key=True)
@@ -32,17 +30,18 @@ class Article(Base):
     body = Column(VARCHAR(1024), nullable=False)
     date_created = Column(TIMESTAMP, default=datetime.utcnow())
     category_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
-    autor_id = Column(Integer, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
+    author_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
 
 
-class ArticleComments(Base):
-    __table__: str = "article_comments"
+class ArticleComment(Base):
+    __tablename__: str = "article_comments"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
-    article_id = Column(Integer, ForeignKey ("articles.id", ondelete="CASCADE"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    article_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
     comment = Column(VARCHAR(140), nullable=False)
     date_created = Column(TIMESTAMP, default=datetime.utcnow())
+
 
 """
 class UserArticle(Base):
