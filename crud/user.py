@@ -46,14 +46,13 @@ class CRUDUser:
             users = session.execute(
                 select(User)
                 .order_by(User.id)
-                )
+            )
         else:
             categories = session.execute(
                 select(User)
                 .order_by(User.id)
             )
         return [UserInDBSchema(**user[0].__dict__) for user in users]
-
 
     @staticmethod
     @create_session
@@ -73,8 +72,6 @@ class CRUDUser:
         else:
             return True
 
-
-
     @staticmethod
     @create_session
     def get_articles(user_id: int, session: Session = None) -> List[Tuple[User, Article]]:
@@ -84,5 +81,3 @@ class CRUDUser:
             .where(User.id == User)
         )
         return response.all()
-
-
