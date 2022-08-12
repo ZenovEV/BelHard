@@ -28,9 +28,9 @@ class Article(Base):
     id = Column(Integer, primary_key=True)
     title = Column(VARCHAR(45), nullable=False)
     body = Column(VARCHAR(1024), nullable=False)
-    date_created = Column(TIMESTAMP, default=datetime.utcnow())
+    #date_created = Column(TIMESTAMP, default=datetime.utcnow())
     category_id = Column(Integer, ForeignKey("articles.id", ondelete="CASCADE"), nullable=False)
-    author_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
 
 
 class ArticleComment(Base):

@@ -56,7 +56,6 @@ class ClientSession:
         if response.status == HTTPStatus.OK:
             return await response.json()
 
-
     @staticmethod
     @create_client_session
     async def get_all(
